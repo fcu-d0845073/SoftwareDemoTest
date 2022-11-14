@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'jacoco'
 }
 
 group 'com.github.fcud0845073'
@@ -18,7 +19,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 application {
     mainClassName 'com.github.fcud0845073.Main'
 }
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled = true
+    }
+}
+
